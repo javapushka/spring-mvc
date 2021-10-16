@@ -10,14 +10,17 @@
 <body>
 <table border="1">
     <thead>
-    <th>
-        <tr th:each="tempCars:${result}">
-            <td th:text="${tempCars.manufacturer}"/>
-            <td th:text="${tempCars.model}"/>
-            <td th:text="${tempCars.vinNumber}"/>
-        </tr>
-    </th>
+    <th>Manufacturer</th>
+    <th>Model</th>
+    <th>VIN_Number</th>
     </thead>
+    <tbody>
+    <tr th:each="tempCars:${result}">
+        <td th:text="${tempCars.manufacturer}"/>
+        <td th:text="${tempCars.model}"/>
+        <td th:text="${tempCars.vinNumber}"/>
+    </tr>
+    </tbody>
 </table>
 </body>
 </html>

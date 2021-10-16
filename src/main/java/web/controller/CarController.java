@@ -8,6 +8,7 @@ import web.model.Car;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class CarController {
@@ -17,23 +18,12 @@ public class CarController {
                           Model model) {
         List<Car> carList;
         if (count != null) {
-            switch (Integer.parseInt(count)) {
-                case 1:
-                    carList = Arrays.asList(Car.createAndGetFiveCars()).subList(0, 1);
-                    break;
-                case 2:
-                    carList = Arrays.asList(Car.createAndGetFiveCars()).subList(0, 2);
-                    break;
-                case 3:
-                    carList = Arrays.asList(Car.createAndGetFiveCars()).subList(0, 3);
-                    break;
-                case 4:
-                    carList = Arrays.asList(Car.createAndGetFiveCars()).subList(0, 4);
-                    break;
-                default:
-                    carList = Arrays.asList(Car.createAndGetFiveCars());
-                    break;
-            }
+            int limit = Integer.parseInt(count);
+
+            carList = Arrays.stream(Car.createAndGetFiveCars())
+                    .limit(limit)
+                    .collect(Collectors.toList());
+
         } else {
             carList = Arrays.asList(Car.createAndGetFiveCars());
         }
